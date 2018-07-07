@@ -1,0 +1,6 @@
+{
+    "serverUrl": "http://hml-api.elo.com.br/user/v1/publickeys",
+    "headers": {
+        "client_id": ""
+    }
+}

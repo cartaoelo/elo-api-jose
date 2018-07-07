@@ -1,0 +1,28 @@
+{
+  "name": "elo-api-jose",
+  "version": "0.1.0",
+  "description": "JOSE for Elo API operations in node.js",
+  "main": "src/index.ts",
+  "scripts": {
+    "generate-jwk": "ts-node ./src generate-jwk",
+    "encrypt-card-data": "ts-node ./src encrypt-card-data",
+    "build": "tsc --module es2015 --allowSyntheticDefaultImports"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.4",
+    "@types/isomorphic-fetch": "0.0.34",
+    "@types/node": "^10.5.2",
+    "@types/yargs": "^11.0.0",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "isomorphic-fetch": "^2.2.1",
+    "node-console-input": "^1.1.1",
+    "node-jose": "^1.0.0",
+    "yargs": "^12.0.1"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "elo-api-jose",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "JOSE for Elo API operations in node.js",
   "main": "src/index.ts",
   "scripts": {

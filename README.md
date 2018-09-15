@@ -28,7 +28,7 @@ Eles devem ser configurados antes de prosseguir
 
 ### `generate-jwk`
 ```
-npm run generate-jwk [-- [--kid some_string_kid] [--output ~/some/dir/keypair.json] [--noemit] [-h]] 
+npm run generate-jwk [-- [--kid some_string_kid] [--output|-o ~/some/dir/keypair.json] [--copy-to-clipboard] [--noemit] [-h]] 
 ```
 Gera um par de chaves para ser usado em `addPublicKeyToUser` ou `addPublicKeyToProvisionedUser`.
 O retorno será uma JWK gerada com o algorítmo EC (Elliptic Curve)
@@ -36,7 +36,7 @@ O retorno será uma JWK gerada com o algorítmo EC (Elliptic Curve)
 
 ### `encrypt-card-data`
 ```
-npm run encrypt-card-data [-- [--keyPairPath ~/path/to/keypair.json] [--output ~/some/dir/jwe.json] [--noemit] [-h]]
+npm run encrypt-card-data [-- [--keyPairPath|-kp ~/path/to/keypair.json] [--copy-to-clipboard] [--output|-o ~/some/dir/jwe.json] [--noemit] [-h]]
 ```
 Encripta os dados de `cardData.json` para ser usado no campo de `sensitive` em `createCard` ou `createProvisionedCard`.
 
@@ -44,9 +44,10 @@ Encripta os dados de `cardData.json` para ser usado no campo de `sensitive` em `
 
 Exemplo:
 ```shell
-npm run generate-jwk -- -o ./publickey.json --noemit && npm run encrypt-card-data -- --noEmit --output ./jwe.txt
+npm run generate-jwk -- -o ./publickey.json --noemit && npm run encrypt-card-data -- --noEmit --output ./jwe.txt --copy-to-clipboard
 ```
 O snippet acima vai criar um arquivo `publickey.json` com a public key gerada + um arquivo `jwe.txt` com a `CardSensitiveData` encriptada.
+E ainda irá copiar essa chave para a área de transferência (Clipboard)
 
 ## JavaScript
 

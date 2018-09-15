@@ -10,6 +10,8 @@ import { jwsSign } from './jwsSign';
 import { jweEncrypt } from './jweEncrypt';
 import { cardData, clientConfig } from './config';
 
+const { copy } = require('copy-paste')
+
 async function main() {
 
     let result: any
@@ -22,13 +24,23 @@ async function main() {
         }
         result = await encryptCardData()
     }
-    result = typeof result === 'string' ? result : JSON.stringify(result, null, '\t')
+
+    const newResult = typeof result === 'string' ? result : JSON.stringify(result, null, '\t')
     if (!Args.noEmit) {
-        console.log(result)
+        console.log(newResult)
     }
     if (Args.output) {
         fs.ensureDirSync(path.dirname(Args.output))
-        fs.writeFileSync(Args.output, result)
+        fs.writeFileSync(Args.output, newResult)
+    }
+    if (Args.shouldCC) {
+        copy(
+            Args.selectedOption === 'encrypt-card-data' ? result : JSON.stringify(result).replace('"', '\\"'),
+            () => {
+                console.log("\nCopied to clipboard!")
+                process.exit(0)
+            }
+        )
     }
 }
 

@@ -8,7 +8,7 @@ import { getServerKey } from './serverKey'
 
 import { jwsSign } from './jwsSign';
 import { jweEncrypt } from './jweEncrypt';
-import { cardData } from './config';
+import { cardData, clientConfig } from './config';
 
 async function main() {
 
@@ -16,6 +16,10 @@ async function main() {
     if (Args.selectedOption === 'generate-jwk') {
         result = await generateJwk()
     } else {
+        if (!clientConfig.headers.client_id) {
+            console.error("You should provide client_id of your application on project_dir/config/client.json")
+            return
+        }
         result = await encryptCardData()
     }
     result = typeof result === 'string' ? result : JSON.stringify(result, null, '\t')

@@ -8,7 +8,9 @@ const serverKeyPath = path.join(__dirname, '..', 'store', 'serverKey.json')
 export async function getServerKey() {
     try {
         const storedKey = require(serverKeyPath)
-        return storedKey
+        if (!storedKey.error) {
+            return storedKey
+        }
     } catch (e) {
         // Do nothing
     }
@@ -21,7 +23,7 @@ export async function getServerKey() {
         fs.ensureDirSync(path.dirname(serverKeyPath))
         fs.writeFileSync(serverKeyPath, JSON.stringify(json, null, '\t'))
         return json
-    } catch(e) {
+    } catch (e) {
         console.error(await response.text())
     }
 }
